@@ -1,6 +1,6 @@
 # Transportation Problem — Comparative Optimization Study
 
-**Author:** YAO Paul-Alex | **Group 9 — Team 4** | EFREI Paris — Operations Research
+**Author:** YAO Paul-Alex |EFREI Paris — Operations Research
 
 ## Overview
 
