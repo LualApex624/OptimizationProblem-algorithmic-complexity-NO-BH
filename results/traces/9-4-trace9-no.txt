@@ -1,0 +1,425 @@
+
+============================================================
+  PROBLEME 9  —  Methode : NO
+  Fournisseurs : 7   Clients : 3
+============================================================
+
+--- TABLEAU DES COUTS ---
+                C1      C2      C3  Provisions
+----------------------------------------------
+P1              30      20      15         100
+P2              10      50       2         100
+P3               9      10      30         100
+P4               6       2      29         100
+P5              50      40       3         100
+P6               5      38      27         100
+P7              50       4      22         100
+Commandes      400     200     100
+
+
+--- Methode Nord-Ouest ---
+
+--- PROPOSITION INITIALE ---
+                C1      C2      C3  Provisions
+----------------------------------------------
+P1             100       0       0         100
+P2             100       0       0         100
+P3             100       0       0         100
+P4             100       0       0         100
+P5               0     100       0         100
+P6               0     100       0         100
+P7               0       0     100         100
+Commandes      400     200     100
+
+Cout initial : 15500
+
+============================================================
+  METHODE DU MARCHE-PIED AVEC POTENTIEL
+============================================================
+
+──────────────────────────────────────────────────
+  ITERATION 0
+──────────────────────────────────────────────────
+
+--- PROPOSITION DE TRANSPORT ---
+                C1      C2      C3
+----------------------------------
+P1             100       0       0
+P2             100       0       0
+P3             100       0       0
+P4             100       0       0
+P5               0     100       0
+P6               0     100       0
+P7               0       0     100
+
+  Cout de transport total : 15500
+
+
+  Nombre d'aretes dans la base : 7  (attendu pour arbre : 9)
+  Proposition connexe : NON (3 composantes)
+    Composante 1 : ['P1', 'P3', 'P4', 'P2', 'C1']
+    Composante 2 : ['P5', 'P6', 'C2']
+    Composante 3 : ['P7', 'C3']
+    Ajout arete fictive (2,3) de cout 2 pour rendre connexe
+    Ajout arete fictive (4,2) de cout 2 pour rendre connexe
+  Proposition connexe : OUI
+
+  Potentiels U (fournisseurs) : [0, -20, -21, -24, 14, 12, 0]
+  Potentiels V (clients)      : [30, 26, 22]
+
+--- TABLE DES COUTS POTENTIELS ---
+                C1      C2      C3
+----------------------------------
+P1              30      26      22
+P2              10       6       2
+P3               9       5       1
+P4               6       2      -2
+P5              44      40      36
+P6              42      38      34
+P7              30      26      22
+
+
+--- TABLE DES COUTS MARGINAUX ---
+                C1      C2      C3
+----------------------------------
+P1               0      -6      -7
+P2               0      44       0
+P3               0       5      29
+P4               0       0      31
+P5               6       0     -33
+P6             -37       0      -7
+P7              20     -22       0
+
+  Meilleure arete ameliorante : (6,1)  (cout marginal = -37)
+  Cycle : [(6, 1), (6, 2), (4, 2), (4, 1)]
+  Conditions sur le cycle :
+    (6,1) : + delta  (valeur actuelle = 0)
+    (6,2) : - delta  (valeur actuelle = 100)
+    (4,2) : + delta  (valeur actuelle = 0)
+    (4,1) : - delta  (valeur actuelle = 100)
+  -> delta = 100
+  Arete supprimee : (6,2)
+  Arete supprimee : (4,1)
+  Deplacement de 100 unites sur le cycle.
+  Nouveau cout : 11800
+
+──────────────────────────────────────────────────
+  ITERATION 1
+──────────────────────────────────────────────────
+
+--- PROPOSITION DE TRANSPORT ---
+                C1      C2      C3
+----------------------------------
+P1             100       0       0
+P2             100       0       0
+P3             100       0       0
+P4               0     100       0
+P5               0     100       0
+P6             100       0       0
+P7               0       0     100
+
+  Cout de transport total : 11800
+
+
+  Nombre d'aretes dans la base : 7  (attendu pour arbre : 9)
+  Proposition connexe : NON (3 composantes)
+    Composante 1 : ['P1', 'P3', 'P6', 'P2', 'C1']
+    Composante 2 : ['P4', 'P5', 'C2']
+    Composante 3 : ['P7', 'C3']
+    Ajout arete fictive (2,3) de cout 2 pour rendre connexe
+    Ajout arete fictive (5,3) de cout 3 pour rendre connexe
+  Proposition connexe : OUI
+
+  Potentiels U (fournisseurs) : [0, -20, -21, -57, -19, -25, 0]
+  Potentiels V (clients)      : [30, 59, 22]
+
+--- TABLE DES COUTS POTENTIELS ---
+                C1      C2      C3
+----------------------------------
+P1              30      59      22
+P2              10      39       2
+P3               9      38       1
+P4             -27       2     -35
+P5              11      40       3
+P6               5      34      -3
+P7              30      59      22
+
+
+--- TABLE DES COUTS MARGINAUX ---
+                C1      C2      C3
+----------------------------------
+P1               0     -39      -7
+P2               0      11       0
+P3               0     -28      29
+P4              33       0      64
+P5              39       0       0
+P6               0       4      30
+P7              20     -55       0
+
+  Meilleure arete ameliorante : (7,2)  (cout marginal = -55)
+  Cycle : [(7, 2), (7, 3), (5, 3), (5, 2)]
+  Conditions sur le cycle :
+    (7,2) : + delta  (valeur actuelle = 0)
+    (7,3) : - delta  (valeur actuelle = 100)
+    (5,3) : + delta  (valeur actuelle = 0)
+    (5,2) : - delta  (valeur actuelle = 100)
+  -> delta = 100
+  Arete supprimee : (7,3)
+  Arete supprimee : (5,2)
+  Deplacement de 100 unites sur le cycle.
+  Nouveau cout : 6300
+
+──────────────────────────────────────────────────
+  ITERATION 2
+──────────────────────────────────────────────────
+
+--- PROPOSITION DE TRANSPORT ---
+                C1      C2      C3
+----------------------------------
+P1             100       0       0
+P2             100       0       0
+P3             100       0       0
+P4               0     100       0
+P5               0       0     100
+P6             100       0       0
+P7               0     100       0
+
+  Cout de transport total : 6300
+
+
+  Nombre d'aretes dans la base : 7  (attendu pour arbre : 9)
+  Proposition connexe : NON (3 composantes)
+    Composante 1 : ['P1', 'P3', 'P6', 'P2', 'C1']
+    Composante 2 : ['P4', 'P7', 'C2']
+    Composante 3 : ['P5', 'C3']
+    Ajout arete fictive (2,3) de cout 2 pour rendre connexe
+    Ajout arete fictive (4,1) de cout 6 pour rendre connexe
+  Proposition connexe : OUI
+
+  Potentiels U (fournisseurs) : [0, -20, -21, -24, -19, -25, -22]
+  Potentiels V (clients)      : [30, 26, 22]
+
+--- TABLE DES COUTS POTENTIELS ---
+                C1      C2      C3
+----------------------------------
+P1              30      26      22
+P2              10       6       2
+P3               9       5       1
+P4               6       2      -2
+P5              11       7       3
+P6               5       1      -3
+P7               8       4       0
+
+
+--- TABLE DES COUTS MARGINAUX ---
+                C1      C2      C3
+----------------------------------
+P1               0      -6      -7
+P2               0      44       0
+P3               0       5      29
+P4               0       0      31
+P5              39      33       0
+P6               0      37      30
+P7              42       0      22
+
+  Meilleure arete ameliorante : (1,3)  (cout marginal = -7)
+  Cycle : [(1, 3), (1, 1), (2, 1), (2, 3)]
+  Conditions sur le cycle :
+    (1,3) : + delta  (valeur actuelle = 0)
+    (1,1) : - delta  (valeur actuelle = 100)
+    (2,1) : + delta  (valeur actuelle = 100)
+    (2,3) : - delta  (valeur actuelle = 0)
+  -> delta = 0
+  Arete supprimee : (2,3)
+  Pivot degenere (delta = 0).
+  -> Retrait de l'arete (2,3) a flux 0 de la base
+
+──────────────────────────────────────────────────
+  ITERATION 3
+──────────────────────────────────────────────────
+
+--- PROPOSITION DE TRANSPORT ---
+                C1      C2      C3
+----------------------------------
+P1             100       0       0
+P2             100       0       0
+P3             100       0       0
+P4               0     100       0
+P5               0       0     100
+P6             100       0       0
+P7               0     100       0
+
+  Cout de transport total : 6300
+
+
+  Nombre d'aretes dans la base : 9  (attendu pour arbre : 9)
+  Proposition connexe : OUI
+
+  Potentiels U (fournisseurs) : [0, -20, -21, -24, -12, -25, -22]
+  Potentiels V (clients)      : [30, 26, 15]
+
+--- TABLE DES COUTS POTENTIELS ---
+                C1      C2      C3
+----------------------------------
+P1              30      26      15
+P2              10       6      -5
+P3               9       5      -6
+P4               6       2      -9
+P5              18      14       3
+P6               5       1     -10
+P7               8       4      -7
+
+
+--- TABLE DES COUTS MARGINAUX ---
+                C1      C2      C3
+----------------------------------
+P1               0      -6       0
+P2               0      44       7
+P3               0       5      36
+P4               0       0      38
+P5              32      26       0
+P6               0      37      37
+P7              42       0      29
+
+  Meilleure arete ameliorante : (1,2)  (cout marginal = -6)
+  Cycle : [(1, 2), (1, 1), (4, 1), (4, 2)]
+  Conditions sur le cycle :
+    (1,2) : + delta  (valeur actuelle = 0)
+    (1,1) : - delta  (valeur actuelle = 100)
+    (4,1) : + delta  (valeur actuelle = 0)
+    (4,2) : - delta  (valeur actuelle = 100)
+  -> delta = 100
+  Arete supprimee : (1,1)
+  Arete supprimee : (4,2)
+  Deplacement de 100 unites sur le cycle.
+  Nouveau cout : 5700
+
+──────────────────────────────────────────────────
+  ITERATION 4
+──────────────────────────────────────────────────
+
+--- PROPOSITION DE TRANSPORT ---
+                C1      C2      C3
+----------------------------------
+P1               0     100       0
+P2             100       0       0
+P3             100       0       0
+P4             100       0       0
+P5               0       0     100
+P6             100       0       0
+P7               0     100       0
+
+  Cout de transport total : 5700
+
+
+  Nombre d'aretes dans la base : 7  (attendu pour arbre : 9)
+  Proposition connexe : NON (3 composantes)
+    Composante 1 : ['P1', 'P7', 'C2']
+    Composante 2 : ['P2', 'P3', 'P4', 'P6', 'C1']
+    Composante 3 : ['P5', 'C3']
+    Ajout arete fictive (2,3) de cout 2 pour rendre connexe
+    Ajout arete fictive (4,2) de cout 2 pour rendre connexe
+  Proposition connexe : OUI
+
+  Potentiels U (fournisseurs) : [0, -14, -15, -18, -13, -19, -16]
+  Potentiels V (clients)      : [24, 20, 16]
+
+--- TABLE DES COUTS POTENTIELS ---
+                C1      C2      C3
+----------------------------------
+P1              24      20      16
+P2              10       6       2
+P3               9       5       1
+P4               6       2      -2
+P5              11       7       3
+P6               5       1      -3
+P7               8       4       0
+
+
+--- TABLE DES COUTS MARGINAUX ---
+                C1      C2      C3
+----------------------------------
+P1               6       0      -1
+P2               0      44       0
+P3               0       5      29
+P4               0       0      31
+P5              39      33       0
+P6               0      37      30
+P7              42       0      22
+
+  Meilleure arete ameliorante : (1,3)  (cout marginal = -1)
+  Cycle : [(1, 3), (1, 2), (4, 2), (4, 1), (2, 1), (2, 3)]
+  Conditions sur le cycle :
+    (1,3) : + delta  (valeur actuelle = 0)
+    (1,2) : - delta  (valeur actuelle = 100)
+    (4,2) : + delta  (valeur actuelle = 0)
+    (4,1) : - delta  (valeur actuelle = 100)
+    (2,1) : + delta  (valeur actuelle = 100)
+    (2,3) : - delta  (valeur actuelle = 0)
+  -> delta = 0
+  Arete supprimee : (2,3)
+  Pivot degenere (delta = 0).
+  -> Retrait de l'arete (2,3) a flux 0 de la base
+
+──────────────────────────────────────────────────
+  ITERATION 5
+──────────────────────────────────────────────────
+
+--- PROPOSITION DE TRANSPORT ---
+                C1      C2      C3
+----------------------------------
+P1               0     100       0
+P2             100       0       0
+P3             100       0       0
+P4             100       0       0
+P5               0       0     100
+P6             100       0       0
+P7               0     100       0
+
+  Cout de transport total : 5700
+
+
+  Nombre d'aretes dans la base : 9  (attendu pour arbre : 9)
+  Proposition connexe : OUI
+
+  Potentiels U (fournisseurs) : [0, -14, -15, -18, -12, -19, -16]
+  Potentiels V (clients)      : [24, 20, 15]
+
+--- TABLE DES COUTS POTENTIELS ---
+                C1      C2      C3
+----------------------------------
+P1              24      20      15
+P2              10       6       1
+P3               9       5       0
+P4               6       2      -3
+P5              12       8       3
+P6               5       1      -4
+P7               8       4      -1
+
+
+--- TABLE DES COUTS MARGINAUX ---
+                C1      C2      C3
+----------------------------------
+P1               6       0       0
+P2               0      44       1
+P3               0       5      30
+P4               0       0      32
+P5              38      32       0
+P6               0      37      31
+P7              42       0      23
+
+
+*** SOLUTION OPTIMALE atteinte a l'iteration 5 ***
+Cout total optimal : 5700
+
+--- ALLOCATION FINALE ---
+                C1      C2      C3
+----------------------------------
+P1               0     100       0
+P2             100       0       0
+P3             100       0       0
+P4             100       0       0
+P5               0       0     100
+P6             100       0       0
+P7               0     100       0
+

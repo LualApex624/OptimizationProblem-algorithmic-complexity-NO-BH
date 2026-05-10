@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(chmod +x /Users/alexandreduvalier/Downloads/Efrei/RO/Projet-Recherche-OP-main/run_benchmarks.sh)",
+      "Bash(make)",
+      "Bash(python3 -c ' *)",
+      "Bash(./transport single *)",
+      "Bash(python3 benchmark_python.py --single 40 3)",
+      "Bash(./cpp/transport single *)",
+      "Bash(python3 benchmark_python.py --single 10 20)",
+      "Bash(./cpp/transport bench-quick *)",
+      "Bash(node -e \"require\\('docx'\\)\")",
+      "Bash(npm install *)",
+      "Bash(npm root *)",
+      "Bash(NODE_PATH=$\\(npm root -g\\) node /Users/alexandreduvalier/Downloads/Efrei/RO/Projet-Recherche-OP-main/generate_docx.js)",
+      "Bash(mv entrees/*.txt data/problems/)",
+      "Bash(mv traces/*.txt results/traces/)",
+      "Bash(mv comparaison_*.png results/figures/)"
+    ]
+  }
+}

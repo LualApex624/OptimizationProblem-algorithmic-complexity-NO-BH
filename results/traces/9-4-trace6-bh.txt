@@ -1,0 +1,207 @@
+
+============================================================
+  PROBLEME 6  —  Methode : BH
+  Fournisseurs : 3   Clients : 4
+============================================================
+
+--- TABLEAU DES COUTS ---
+                C1      C2      C3      C4  Provisions
+------------------------------------------------------
+P1              11      12      10      10          60
+P2              17      16      15      18          30
+P3              19      21      20      22          90
+Commandes       50      75      30      25
+
+
+--- Methode Balas-Hammer ---
+
+  Etape 1:
+    Penalites lignes   : [0, 1, 1]   -> max = 1 (P2, P3)
+    Penalites colonnes : [6, 4, 5, 8]  -> max = 8 (C4)
+    -> Choisir colonne C4, cout min = 10 a (1,4)
+    -> Allouer 25 a (1,4)
+
+  Etape 2:
+    Penalites lignes   : [1, 1, 1]   -> max = 1 (P1, P2, P3)
+    Penalites colonnes : [6, 4, 5, -1]  -> max = 6 (C1)
+    -> Choisir colonne C1, cout min = 11 a (1,1)
+    -> Allouer 35 a (1,1)
+
+  Etape 3:
+    Penalites lignes   : [-1, 1, 1]   -> max = 1 (P2, P3)
+    Penalites colonnes : [2, 5, 5, -1]  -> max = 5 (C2, C3)
+    -> Choisir colonne C2, cout min = 16 a (2,2)
+    -> Allouer 30 a (2,2)
+
+  Etape 4:
+    Penalites lignes   : [-1, -1, 1]   -> max = 1 (P3)
+    Penalites colonnes : [19, 21, 20, -1]  -> max = 21 (C2)
+    -> Choisir colonne C2, cout min = 21 a (3,2)
+    -> Allouer 45 a (3,2)
+
+  Etape 5:
+    Penalites lignes   : [-1, -1, 1]   -> max = 1 (P3)
+    Penalites colonnes : [19, -1, 20, -1]  -> max = 20 (C3)
+    -> Choisir colonne C3, cout min = 20 a (3,3)
+    -> Allouer 30 a (3,3)
+
+  Etape 6:
+    Penalites lignes   : [-1, -1, 19]   -> max = 19 (P3)
+    Penalites colonnes : [19, -1, -1, -1]  -> max = 19 (C1)
+    -> Choisir ligne P3, cout min = 19 a (3,1)
+    -> Allouer 15 a (3,1)
+
+--- PROPOSITION INITIALE ---
+                C1      C2      C3      C4  Provisions
+------------------------------------------------------
+P1              35       0       0      25          60
+P2               0      30       0       0          30
+P3              15      45      30       0          90
+Commandes       50      75      30      25
+
+Cout initial : 2945
+
+============================================================
+  METHODE DU MARCHE-PIED AVEC POTENTIEL
+============================================================
+
+──────────────────────────────────────────────────
+  ITERATION 0
+──────────────────────────────────────────────────
+
+--- PROPOSITION DE TRANSPORT ---
+                C1      C2      C3      C4
+------------------------------------------
+P1              35       0       0      25
+P2               0      30       0       0
+P3              15      45      30       0
+
+  Cout de transport total : 2945
+
+
+  Nombre d'aretes dans la base : 6  (attendu pour arbre : 6)
+  Proposition connexe : OUI
+
+  Potentiels U (fournisseurs) : [0, 3, 8]
+  Potentiels V (clients)      : [11, 13, 12, 10]
+
+--- TABLE DES COUTS POTENTIELS ---
+                C1      C2      C3      C4
+------------------------------------------
+P1              11      13      12      10
+P2              14      16      15      13
+P3              19      21      20      18
+
+
+--- TABLE DES COUTS MARGINAUX ---
+                C1      C2      C3      C4
+------------------------------------------
+P1               0      -1      -2       0
+P2               3       0       0       5
+P3               0       0       0       4
+
+  Meilleure arete ameliorante : (1,3)  (cout marginal = -2)
+  Cycle : [(1, 3), (1, 1), (3, 1), (3, 3)]
+  Conditions sur le cycle :
+    (1,3) : + delta  (valeur actuelle = 0)
+    (1,1) : - delta  (valeur actuelle = 35)
+    (3,1) : + delta  (valeur actuelle = 15)
+    (3,3) : - delta  (valeur actuelle = 30)
+  -> delta = 30
+  Arete supprimee : (3,3)
+  Deplacement de 30 unites sur le cycle.
+  Nouveau cout : 2885
+
+──────────────────────────────────────────────────
+  ITERATION 1
+──────────────────────────────────────────────────
+
+--- PROPOSITION DE TRANSPORT ---
+                C1      C2      C3      C4
+------------------------------------------
+P1               5       0      30      25
+P2               0      30       0       0
+P3              45      45       0       0
+
+  Cout de transport total : 2885
+
+
+  Nombre d'aretes dans la base : 6  (attendu pour arbre : 6)
+  Proposition connexe : OUI
+
+  Potentiels U (fournisseurs) : [0, 3, 8]
+  Potentiels V (clients)      : [11, 13, 10, 10]
+
+--- TABLE DES COUTS POTENTIELS ---
+                C1      C2      C3      C4
+------------------------------------------
+P1              11      13      10      10
+P2              14      16      13      13
+P3              19      21      18      18
+
+
+--- TABLE DES COUTS MARGINAUX ---
+                C1      C2      C3      C4
+------------------------------------------
+P1               0      -1       0       0
+P2               3       0       2       5
+P3               0       0       2       4
+
+  Meilleure arete ameliorante : (1,2)  (cout marginal = -1)
+  Cycle : [(1, 2), (1, 1), (3, 1), (3, 2)]
+  Conditions sur le cycle :
+    (1,2) : + delta  (valeur actuelle = 0)
+    (1,1) : - delta  (valeur actuelle = 5)
+    (3,1) : + delta  (valeur actuelle = 45)
+    (3,2) : - delta  (valeur actuelle = 45)
+  -> delta = 5
+  Arete supprimee : (1,1)
+  Deplacement de 5 unites sur le cycle.
+  Nouveau cout : 2880
+
+──────────────────────────────────────────────────
+  ITERATION 2
+──────────────────────────────────────────────────
+
+--- PROPOSITION DE TRANSPORT ---
+                C1      C2      C3      C4
+------------------------------------------
+P1               0       5      30      25
+P2               0      30       0       0
+P3              50      40       0       0
+
+  Cout de transport total : 2880
+
+
+  Nombre d'aretes dans la base : 6  (attendu pour arbre : 6)
+  Proposition connexe : OUI
+
+  Potentiels U (fournisseurs) : [0, 4, 9]
+  Potentiels V (clients)      : [10, 12, 10, 10]
+
+--- TABLE DES COUTS POTENTIELS ---
+                C1      C2      C3      C4
+------------------------------------------
+P1              10      12      10      10
+P2              14      16      14      14
+P3              19      21      19      19
+
+
+--- TABLE DES COUTS MARGINAUX ---
+                C1      C2      C3      C4
+------------------------------------------
+P1               1       0       0       0
+P2               3       0       1       4
+P3               0       0       1       3
+
+
+*** SOLUTION OPTIMALE atteinte a l'iteration 2 ***
+Cout total optimal : 2880
+
+--- ALLOCATION FINALE ---
+                C1      C2      C3      C4
+------------------------------------------
+P1               0       5      30      25
+P2               0      30       0       0
+P3              50      40       0       0
+

@@ -1,0 +1,115 @@
+
+============================================================
+  PROBLEME 4  —  Methode : NO
+  Fournisseurs : 2   Clients : 2
+============================================================
+
+--- TABLEAU DES COUTS ---
+                C1      C2  Provisions
+--------------------------------------
+P1              30       1         600
+P2               1      30         500
+Commandes      100    1000
+
+
+--- Methode Nord-Ouest ---
+
+--- PROPOSITION INITIALE ---
+                C1      C2  Provisions
+--------------------------------------
+P1             100     500         600
+P2               0     500         500
+Commandes      100    1000
+
+Cout initial : 18500
+
+============================================================
+  METHODE DU MARCHE-PIED AVEC POTENTIEL
+============================================================
+
+──────────────────────────────────────────────────
+  ITERATION 0
+──────────────────────────────────────────────────
+
+--- PROPOSITION DE TRANSPORT ---
+                C1      C2
+--------------------------
+P1             100     500
+P2               0     500
+
+  Cout de transport total : 18500
+
+
+  Nombre d'aretes dans la base : 3  (attendu pour arbre : 3)
+  Proposition connexe : OUI
+
+  Potentiels U (fournisseurs) : [0, 29]
+  Potentiels V (clients)      : [30, 1]
+
+--- TABLE DES COUTS POTENTIELS ---
+                C1      C2
+--------------------------
+P1              30       1
+P2              59      30
+
+
+--- TABLE DES COUTS MARGINAUX ---
+                C1      C2
+--------------------------
+P1               0       0
+P2             -58       0
+
+  Meilleure arete ameliorante : (2,1)  (cout marginal = -58)
+  Cycle : [(2, 1), (2, 2), (1, 2), (1, 1)]
+  Conditions sur le cycle :
+    (2,1) : + delta  (valeur actuelle = 0)
+    (2,2) : - delta  (valeur actuelle = 500)
+    (1,2) : + delta  (valeur actuelle = 500)
+    (1,1) : - delta  (valeur actuelle = 100)
+  -> delta = 100
+  Arete supprimee : (1,1)
+  Deplacement de 100 unites sur le cycle.
+  Nouveau cout : 12700
+
+──────────────────────────────────────────────────
+  ITERATION 1
+──────────────────────────────────────────────────
+
+--- PROPOSITION DE TRANSPORT ---
+                C1      C2
+--------------------------
+P1               0     600
+P2             100     400
+
+  Cout de transport total : 12700
+
+
+  Nombre d'aretes dans la base : 3  (attendu pour arbre : 3)
+  Proposition connexe : OUI
+
+  Potentiels U (fournisseurs) : [0, 29]
+  Potentiels V (clients)      : [-28, 1]
+
+--- TABLE DES COUTS POTENTIELS ---
+                C1      C2
+--------------------------
+P1             -28       1
+P2               1      30
+
+
+--- TABLE DES COUTS MARGINAUX ---
+                C1      C2
+--------------------------
+P1              58       0
+P2               0       0
+
+
+*** SOLUTION OPTIMALE atteinte a l'iteration 1 ***
+Cout total optimal : 12700
+
+--- ALLOCATION FINALE ---
+                C1      C2
+--------------------------
+P1               0     600
+P2             100     400
+

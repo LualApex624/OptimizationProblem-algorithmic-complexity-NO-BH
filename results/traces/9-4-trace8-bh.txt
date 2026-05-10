@@ -1,0 +1,125 @@
+
+============================================================
+  PROBLEME 8  —  Methode : BH
+  Fournisseurs : 5   Clients : 2
+============================================================
+
+--- TABLEAU DES COUTS ---
+                C1      C2  Provisions
+--------------------------------------
+P1              50      20         100
+P2              10      50         200
+P3              55      40         100
+P4              35      45         200
+P5              12       8         200
+Commandes      300     500
+
+
+--- Methode Balas-Hammer ---
+
+  Etape 1:
+    Penalites lignes   : [30, 40, 15, 10, 4]   -> max = 40 (P2)
+    Penalites colonnes : [2, 12]  -> max = 12 (C2)
+    -> Choisir ligne P2, cout min = 10 a (2,1)
+    -> Allouer 200 a (2,1)
+
+  Etape 2:
+    Penalites lignes   : [30, -1, 15, 10, 4]   -> max = 30 (P1)
+    Penalites colonnes : [23, 12]  -> max = 23 (C1)
+    -> Choisir ligne P1, cout min = 20 a (1,2)
+    -> Allouer 100 a (1,2)
+
+  Etape 3:
+    Penalites lignes   : [-1, -1, 15, 10, 4]   -> max = 15 (P3)
+    Penalites colonnes : [23, 32]  -> max = 32 (C2)
+    -> Choisir colonne C2, cout min = 8 a (5,2)
+    -> Allouer 200 a (5,2)
+
+  Etape 4:
+    Penalites lignes   : [-1, -1, 15, 10, -1]   -> max = 15 (P3)
+    Penalites colonnes : [20, 5]  -> max = 20 (C1)
+    -> Choisir colonne C1, cout min = 35 a (4,1)
+    -> Allouer 100 a (4,1)
+
+  Etape 5:
+    Penalites lignes   : [-1, -1, 40, 45, -1]   -> max = 45 (P4)
+    Penalites colonnes : [-1, 5]  -> max = 5 (C2)
+    -> Choisir ligne P4, cout min = 45 a (4,2)
+    -> Allouer 100 a (4,2)
+
+  Etape 6:
+    Penalites lignes   : [-1, -1, 40, -1, -1]   -> max = 40 (P3)
+    Penalites colonnes : [-1, 40]  -> max = 40 (C2)
+    -> Choisir ligne P3, cout min = 40 a (3,2)
+    -> Allouer 100 a (3,2)
+
+--- PROPOSITION INITIALE ---
+                C1      C2  Provisions
+--------------------------------------
+P1               0     100         100
+P2             200       0         200
+P3               0     100         100
+P4             100     100         200
+P5               0     200         200
+Commandes      300     500
+
+Cout initial : 17600
+
+============================================================
+  METHODE DU MARCHE-PIED AVEC POTENTIEL
+============================================================
+
+──────────────────────────────────────────────────
+  ITERATION 0
+──────────────────────────────────────────────────
+
+--- PROPOSITION DE TRANSPORT ---
+                C1      C2
+--------------------------
+P1               0     100
+P2             200       0
+P3               0     100
+P4             100     100
+P5               0     200
+
+  Cout de transport total : 17600
+
+
+  Nombre d'aretes dans la base : 6  (attendu pour arbre : 6)
+  Proposition connexe : OUI
+
+  Potentiels U (fournisseurs) : [0, 0, 20, 25, -12]
+  Potentiels V (clients)      : [10, 20]
+
+--- TABLE DES COUTS POTENTIELS ---
+                C1      C2
+--------------------------
+P1              10      20
+P2              10      20
+P3              30      40
+P4              35      45
+P5              -2       8
+
+
+--- TABLE DES COUTS MARGINAUX ---
+                C1      C2
+--------------------------
+P1              40       0
+P2               0      30
+P3              25       0
+P4               0       0
+P5              14       0
+
+
+*** SOLUTION OPTIMALE atteinte a l'iteration 0 ***
+Cout total optimal : 17600
+
+--- ALLOCATION FINALE ---
+                C1      C2
+--------------------------
+P1               0     100
+P2             200       0
+P3               0     100
+P4             100     100
+P5               0     200
+

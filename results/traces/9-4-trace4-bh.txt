@@ -1,0 +1,89 @@
+
+============================================================
+  PROBLEME 4  —  Methode : BH
+  Fournisseurs : 2   Clients : 2
+============================================================
+
+--- TABLEAU DES COUTS ---
+                C1      C2  Provisions
+--------------------------------------
+P1              30       1         600
+P2               1      30         500
+Commandes      100    1000
+
+
+--- Methode Balas-Hammer ---
+
+  Etape 1:
+    Penalites lignes   : [29, 29]   -> max = 29 (P1, P2)
+    Penalites colonnes : [29, 29]  -> max = 29 (C1, C2)
+    -> Choisir ligne P1, cout min = 1 a (1,2)
+    -> Allouer 600 a (1,2)
+
+  Etape 2:
+    Penalites lignes   : [-1, 29]   -> max = 29 (P2)
+    Penalites colonnes : [1, 30]  -> max = 30 (C2)
+    -> Choisir colonne C2, cout min = 30 a (2,2)
+    -> Allouer 400 a (2,2)
+
+  Etape 3:
+    Penalites lignes   : [-1, 1]   -> max = 1 (P2)
+    Penalites colonnes : [1, -1]  -> max = 1 (C1)
+    -> Choisir ligne P2, cout min = 1 a (2,1)
+    -> Allouer 100 a (2,1)
+
+--- PROPOSITION INITIALE ---
+                C1      C2  Provisions
+--------------------------------------
+P1               0     600         600
+P2             100     400         500
+Commandes      100    1000
+
+Cout initial : 12700
+
+============================================================
+  METHODE DU MARCHE-PIED AVEC POTENTIEL
+============================================================
+
+──────────────────────────────────────────────────
+  ITERATION 0
+──────────────────────────────────────────────────
+
+--- PROPOSITION DE TRANSPORT ---
+                C1      C2
+--------------------------
+P1               0     600
+P2             100     400
+
+  Cout de transport total : 12700
+
+
+  Nombre d'aretes dans la base : 3  (attendu pour arbre : 3)
+  Proposition connexe : OUI
+
+  Potentiels U (fournisseurs) : [0, 29]
+  Potentiels V (clients)      : [-28, 1]
+
+--- TABLE DES COUTS POTENTIELS ---
+                C1      C2
+--------------------------
+P1             -28       1
+P2               1      30
+
+
+--- TABLE DES COUTS MARGINAUX ---
+                C1      C2
+--------------------------
+P1              58       0
+P2               0       0
+
+
+*** SOLUTION OPTIMALE atteinte a l'iteration 0 ***
+Cout total optimal : 12700
+
+--- ALLOCATION FINALE ---
+                C1      C2
+--------------------------
+P1               0     600
+P2             100     400
+

@@ -1,0 +1,107 @@
+
+============================================================
+  PROBLEME 5  —  Methode : BH
+  Fournisseurs : 3   Clients : 3
+============================================================
+
+--- TABLEAU DES COUTS ---
+                C1      C2      C3  Provisions
+----------------------------------------------
+P1               5       7       8          25
+P2               6       8       5          25
+P3               6       7       7          25
+Commandes       35      20      20
+
+
+--- Methode Balas-Hammer ---
+
+  Etape 1:
+    Penalites lignes   : [2, 1, 1]   -> max = 2 (P1)
+    Penalites colonnes : [1, 0, 2]  -> max = 2 (C3)
+    -> Choisir ligne P1, cout min = 5 a (1,1)
+    -> Allouer 25 a (1,1)
+
+  Etape 2:
+    Penalites lignes   : [-1, 1, 1]   -> max = 1 (P2, P3)
+    Penalites colonnes : [0, 1, 2]  -> max = 2 (C3)
+    -> Choisir colonne C3, cout min = 5 a (2,3)
+    -> Allouer 20 a (2,3)
+
+  Etape 3:
+    Penalites lignes   : [-1, 2, 1]   -> max = 2 (P2)
+    Penalites colonnes : [0, 1, -1]  -> max = 1 (C2)
+    -> Choisir ligne P2, cout min = 6 a (2,1)
+    -> Allouer 5 a (2,1)
+
+  Etape 4:
+    Penalites lignes   : [-1, -1, 1]   -> max = 1 (P3)
+    Penalites colonnes : [6, 7, -1]  -> max = 7 (C2)
+    -> Choisir colonne C2, cout min = 7 a (3,2)
+    -> Allouer 20 a (3,2)
+
+  Etape 5:
+    Penalites lignes   : [-1, -1, 6]   -> max = 6 (P3)
+    Penalites colonnes : [6, -1, -1]  -> max = 6 (C1)
+    -> Choisir ligne P3, cout min = 6 a (3,1)
+    -> Allouer 5 a (3,1)
+
+--- PROPOSITION INITIALE ---
+                C1      C2      C3  Provisions
+----------------------------------------------
+P1              25       0       0          25
+P2               5       0      20          25
+P3               5      20       0          25
+Commandes       35      20      20
+
+Cout initial : 425
+
+============================================================
+  METHODE DU MARCHE-PIED AVEC POTENTIEL
+============================================================
+
+──────────────────────────────────────────────────
+  ITERATION 0
+──────────────────────────────────────────────────
+
+--- PROPOSITION DE TRANSPORT ---
+                C1      C2      C3
+----------------------------------
+P1              25       0       0
+P2               5       0      20
+P3               5      20       0
+
+  Cout de transport total : 425
+
+
+  Nombre d'aretes dans la base : 5  (attendu pour arbre : 5)
+  Proposition connexe : OUI
+
+  Potentiels U (fournisseurs) : [0, 1, 1]
+  Potentiels V (clients)      : [5, 6, 4]
+
+--- TABLE DES COUTS POTENTIELS ---
+                C1      C2      C3
+----------------------------------
+P1               5       6       4
+P2               6       7       5
+P3               6       7       5
+
+
+--- TABLE DES COUTS MARGINAUX ---
+                C1      C2      C3
+----------------------------------
+P1               0       1       4
+P2               0       1       0
+P3               0       0       2
+
+
+*** SOLUTION OPTIMALE atteinte a l'iteration 0 ***
+Cout total optimal : 425
+
+--- ALLOCATION FINALE ---
+                C1      C2      C3
+----------------------------------
+P1              25       0       0
+P2               5       0      20
+P3               5      20       0
+

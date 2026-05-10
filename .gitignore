@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# C++ build artifacts
+src/cpp/transport
+src/cpp/transport_debug
+
+# Generated data (complexity study)
+results/checkpoint_complexite.json
+results/resultats_complexite.json
+
+# Generated plots (can be regenerated)
+results/figures/plot1_nuages.png
+results/figures/plot2_pire_cas.png
+results/figures/plot3_ratio.png
+results/figures/plot4_loglog.png
+
+# LaTeX build artifacts
+report/*.aux
+report/*.log
+report/*.out
+report/*.toc
+report/*.synctex.gz
+report/*.fdb_latexmk
+report/*.fls
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
